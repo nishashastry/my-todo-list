@@ -1,0 +1,38 @@
+// Dom Variables
+
+const addItem = document.querySelector(".add")
+let list = document.querySelector(".todos")
+
+// Template
+
+const template = todo => {
+  const item = `
+    <div>
+        <li>
+            <input type="checkbox" /><label>${todo}</label>
+            ><button class="delete">Delete</button>
+        </li>
+    </div>`
+
+  list.innerHTML += item
+}
+
+// Add items
+
+addItem.addEventListener("submit", e => {
+  e.preventDefault()
+
+  const todo = addItem.add.value.trim()
+  if (todo.length) {
+    template(todo)
+    addItem.reset()
+  }
+})
+
+// Delete items
+
+list.addEventListener("click", e => {
+  if (e.target.classList.contains("delete")) {
+    e.target.parentElement.remove()
+  }
+})
